@@ -24,13 +24,14 @@ public class CourseManager {
 
     public List<Course> getCourses(User user, int blockId) {
         List<Course> previousCourses = database.getRegistrations().stream()
-                .filter(r -> r.getUser().equals(user) && r.getBlock().getStartDate().compareTo(LocalDate.now()) > 0).map(r -> r.getCourse()).collect(Collectors.toList());
-        
+                .filter(r -> r.getUser().equals(user) && r.getBlock().getStartDate().compareTo(LocalDate.now()) > 0)
+                .map(r -> r.getCourse()).collect(Collectors.toList());
+
         List<Course> blockCourses = database.getBlocks().stream().filter(b -> b.getId() == blockId)
                 .map(b -> b.getCourses()).flatMap(Collection::stream).collect(Collectors.toList());
-        
-        return blockCourses.stream().filter(c -> !previousCourses.contains(c)
-                && (c.getPrerequisites().isEmpty() || previousCourses.stream().anyMatch(pc -> c.getPrerequisites().contains(pc))))
+
+        return blockCourses.stream().filter(c -> !previousCourses.contains(c) && (c.getPrerequisites().isEmpty()
+                || previousCourses.stream().anyMatch(pc -> c.getPrerequisites().contains(pc))))
                 .collect(Collectors.toList());
     }
 

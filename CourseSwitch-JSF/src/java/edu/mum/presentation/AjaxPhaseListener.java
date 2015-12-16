@@ -62,7 +62,7 @@ public class AjaxPhaseListener implements PhaseListener {
                 if (s.contains("getRegistrations-ajax.faces")) {
                     List<Registration> registrations = registrationManager.getRegistrations(userBean.getUser());
                     String json = new Gson().toJson(registrations);
-                    c
+                    writer.write(json);
                 }
                 if (s.contains("addPreferedCourse-ajax.faces")) {
                     String strRregistrationId = request.getParameter("registrationId");

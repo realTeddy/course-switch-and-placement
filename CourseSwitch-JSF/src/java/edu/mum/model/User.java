@@ -1,67 +1,36 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package edu.mum.model;
 
-public class User {
+/**
+ *
+ * @author Tewodros Ayele Assefa
+ */
+public interface User {
 
-    public User(String id, String firstName, String lastName, String email, String password) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-    }
+    String getEmail();
 
-    private String id;
-    private String firstName;
-    private String lastName;
-    private String email;
+    String getFirstName();
 
-    private String password;
+    String getId();
 
-    public String getId() {
-        return id;
-    }
+    String getLastName();
 
-    public void setId(String id) {
-        this.id = id;
-    }
+    String getPassword();
 
-    public String getFirstName() {
-        return firstName;
-    }
+    void setEmail(String email);
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+    void setFirstName(String firstName);
 
-    public String getLastName() {
-        return lastName;
-    }
+    void setId(String id);
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    void setLastName(String lastName);
 
-    public String getEmail() {
-        return email;
-    }
+    void setPassword(String password);
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setUsername(String username) {
-        email = username;
-    }
-
-    public String getUsername() {
-        return email;
-    }
+    void setUsername(String username);
+    
 }

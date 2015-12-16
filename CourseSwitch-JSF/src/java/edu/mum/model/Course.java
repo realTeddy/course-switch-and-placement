@@ -1,45 +1,36 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package edu.mum.model;
 
 import java.util.List;
 
+/**
+ *
+ * @author Tewodros Ayele Assefa
+ */
+public interface Course {
+    
+    public String getInstructor();
 
-public class Course {
-	private String code;
-	private String title;
-	private String description;
-	private List<Course> prerequisites;
-        private String instructor;
+    public void setInstructor(String instructor);
 
-	public String getCode() {
-		return code;
-	}
+    String getCode();
 
-	public String getDescription() {
-		return description;
-	}
+    String getDescription();
 
-	public List<Course> getPrerequisites() {
-		return prerequisites;
-	}
+    List<Course> getPrerequisites();
 
-	public String getTitle() {
-		return title;
-	}
+    String getTitle();
 
-	public void setCode(String code) {
-		this.code = code;
-	}
+    void setCode(String code);
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    void setDescription(String description);
 
-	public void setPrerequisites(List<Course> prerequisites) {
-		this.prerequisites = prerequisites;
-	}
+    void setPrerequisites(List<Course> prerequisites);
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
+    void setTitle(String title);
+    
 }

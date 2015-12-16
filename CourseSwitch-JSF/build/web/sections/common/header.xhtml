@@ -8,7 +8,8 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>IGNORED</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -31,21 +32,25 @@ and open the template in the editor.
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <h:form class="navbar-form navbar-right" role="search">
+                        <h:form class="navbar-form navbar-right" role="search" rendered="#{!userBean.isLoggedIn}">
                             <div class="form-group">
-                                <h:inputText value="#{userBean.email}" class="form-control" pt:placeholder="username" />
+                                <h:inputText pt:type="email" value="#{userBean.email}" class="form-control" pt:placeholder="username" />
                             </div>
                             <div class="form-group">
                                 <h:inputSecret value="#{userBean.password}" class="form-control" pt:placeholder="password" />
                             </div>
-                            <h:commandButton class="btn btn-warning" value="Login" action="#{userBean.login()}" />
+                            <h:messages class="text-danger" />
+                            <h:commandButton class="btn btn-warning" value="Login" action="#{userBean.login()}"/>
+                        </h:form>
+                        <h:form class="navbar-form navbar-right" role="search" rendered="#{userBean.isLoggedIn}">
+                            <h:commandButton class="btn btn-warning" value="Logout" action="#{userBean.logout()}"/>
                         </h:form>
                         <ul class="nav navbar-nav navbar-right">
                             <li class="hidden">
                                 <a href="#page-top"></a>
                             </li>
                             <li>
-                                <h:link outcome="register" class="page-scroll" value="Register" />
+                                <h:link outcome="createAccount" class="page-scroll" value="Register" />
                             </li>
                         </ul>
                     </div>

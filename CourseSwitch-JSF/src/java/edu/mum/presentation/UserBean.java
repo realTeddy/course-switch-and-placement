@@ -8,11 +8,24 @@ package edu.mum.presentation;
 import edu.mum.business.UserManager;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
+import edu.mum.model.User;
+import javax.faces.application.ConfigurableNavigationHandler;
+import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Named;
 
 @Named
 @SessionScoped
 public class UserBean implements Serializable {
+
+    public UserManager getUserManager() {
+        return userManager;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public UserBean() {
         userManager = new UserManager();
@@ -26,7 +39,13 @@ public class UserBean implements Serializable {
     private String confirmPassword;
     private boolean isLoggedIn;
 
-    private UserManager userManager;
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    private final UserManager userManager;
 
     public String getConfirmPassword() {
         return confirmPassword;
@@ -77,7 +96,7 @@ public class UserBean implements Serializable {
     }
 
     public String getPassword() {
-        return password;
+        return "";
     }
 
     public void setPassword(String password) {
@@ -85,16 +104,36 @@ public class UserBean implements Serializable {
     }
 
     public String login() {
-        if (userManager.getUser(email, password) != null) {
+        user = userManager.getUser(email, password);
+        if (user != null) {
+            email = user.getEmail();
+            firstName = user.getFirstName();
+            lastName = user.getLastName();
+            id = user.getId();
+
             isLoggedIn = true;
-            return "main";
+            return "main?faces-redirect=true";
         }
         return "index";
     }
-    
+
+    public String logout() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        isLoggedIn = false;
+        return "index?faces-redirect=true";
+    }
+
     public String register() {
-        userManager.addUser(id, firstName, lastName, email, password);
+        user = userManager.addUser(id, firstName, lastName, email, password);
         isLoggedIn = true;
-        return "main";
+        return "main?faces-redirect=true";
+    }
+
+    public void checkLogin(ComponentSystemEvent event) {
+        if (!isLoggedIn) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            ConfigurableNavigationHandler handler = (ConfigurableNavigationHandler) context.getApplication().getNavigationHandler();
+            handler.performNavigation("index?faces-redirect=true");
+        }
     }
 }

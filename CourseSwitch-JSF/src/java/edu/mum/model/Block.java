@@ -12,23 +12,18 @@ import java.util.List;
  *
  * @author Tewodros Ayele Assefa
  */
-public class Block {
-    private List<Course> courses;
-    private LocalDate startDate;
+public interface Block {
+    
+    int getBlockId();
+    
+    void setBlockId(int blockId);
 
-    public List<Course> getCourses() {
-        return courses;
-    }
+    List<Course> getCourses();
 
-    public void setCourses(List<Course> courses) {
-        this.courses = courses;
-    }
+    LocalDate getStartDate();
 
-    public LocalDate getStartDate() {
-        return startDate;
-    }
+    void setCourses(List<Course> courses);
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
+    void setStartDate(LocalDate startDate);
+    
 }

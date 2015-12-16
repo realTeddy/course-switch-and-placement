@@ -6,8 +6,8 @@
 package edu.mum.business;
 
 import edu.mum.dataaccess.Database;
-import edu.mum.model.User;
 import java.util.Optional;
+import edu.mum.model.User;
 
 public class UserManager {
 
@@ -22,7 +22,7 @@ public class UserManager {
         return user.isPresent() ? user.get() : null;
     }
 
-    public void addUser(String id, String firstName, String lastName, String email, String password) {
-        database.addUser(new User(id, firstName, lastName, email, password));
+    public User addUser(String id, String firstName, String lastName, String email, String password) {
+        return database.addUser(id, firstName, lastName, email, password);
     }
 }

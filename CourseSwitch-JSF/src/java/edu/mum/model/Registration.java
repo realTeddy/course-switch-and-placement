@@ -1,32 +1,22 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package edu.mum.model;
 
-public class Registration {
+public interface Registration {
 
-    private User user;
-    private Course course;
-    private Block block;
+    Block getBlock();
 
-    public User getUser() {
-        return user;
-    }
+    Course getCourse();
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+    User getUser();
 
-    public Course getCourse() {
-        return course;
-    }
+    void setBlock(Block block);
 
-    public void setCourse(Course course) {
-        this.course = course;
-    }
+    void setCourse(Course course);
 
-    public Block getBlock() {
-        return block;
-    }
+    void setUser(User user);
 
-    public void setBlock(Block block) {
-        this.block = block;
-    }
 }

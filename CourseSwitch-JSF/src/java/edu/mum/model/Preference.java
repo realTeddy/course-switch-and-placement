@@ -5,39 +5,22 @@
  */
 package edu.mum.model;
 
-import java.time.LocalDate;
-
 /**
  *
  * @author Tewodros Ayele Assefa
  */
-public class Preference {
+public interface Preference {
 
-    private User user;
-    private Course course;
-    private LocalDate startDate;
+    Course getCourse();
 
-    public User getUser() {
-        return user;
-    }
+    Block getBlock();
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+    User getUser();
 
-    public Course getCourse() {
-        return course;
-    }
+    void setCourse(Course course);
 
-    public void setCourse(Course course) {
-        this.course = course;
-    }
+    void setBlock(Block block);
 
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
+    void setUser(User user);
+    
 }

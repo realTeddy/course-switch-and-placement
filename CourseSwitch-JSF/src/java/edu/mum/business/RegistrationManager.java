@@ -6,15 +6,26 @@
 package edu.mum.business;
 
 import edu.mum.dataaccess.Database;
+import edu.mum.model.Block;
+import edu.mum.model.Course;
 import edu.mum.model.Registration;
+import edu.mum.model.User;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RegistrationManager {    
-    
-    private Database database;
-    
-    public List<Registration> getRegistrations(String id) {
-        return database.getRegistration().stream().filter(b -> b.getUser().getId().equals(id)).collect(Collectors.toList());
+public class RegistrationManager {
+
+    public RegistrationManager() {
+        database = new Database();
+    }
+
+    private final Database database;
+
+    public List<Registration> getRegistrations(User user) {
+        return database.getRegistration().stream().filter(b -> b.getUser().equals(user)).collect(Collectors.toList());
+    }
+
+    public void register(User user, Block block, Course course) {
+        database.register(user, block, course);
     }
 }

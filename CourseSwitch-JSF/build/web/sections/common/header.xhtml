@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>IGNORED</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <ui:composition>
+            <!-- Navigation -->
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header page-scroll">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand page-scroll" href="#page-top">CSP - Course Switch and Placement</a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <h:form class="navbar-form navbar-right" role="search">
+                            <div class="form-group">
+                                <h:inputText value="#{userBean.email}" class="form-control" pt:placeholder="username" />
+                            </div>
+                            <div class="form-group">
+                                <h:inputSecret value="#{userBean.password}" class="form-control" pt:placeholder="password" />
+                            </div>
+                            <h:commandButton class="btn btn-warning" value="Login" action="#{userBean.login()}" />
+                        </h:form>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="hidden">
+                                <a href="#page-top"></a>
+                            </li>
+                            <li>
+                                <h:link outcome="register" class="page-scroll" value="Register" />
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container-fluid -->
+            </nav>
+        </ui:composition>
+    </h:body>
+</html>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>IGNORED</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/master.xhtml">
+            <ui:define name="header">
+                <ui:include src="/sections/common/header.xhtml"/>
+            </ui:define>
+            <ui:define name="content">
+                <!-- Services Section -->
+                <section id="services">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <h2 class="section-heading">Welcome...</h2>
+                                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <div class="col-md-12">
+                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingOne">
+                                            <h4 class="panel-title">
+                                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                    Big Data
+                                                </a> 
+                                                <input type="button" class="btn btn-sm btn-success pull-right" value="Add preferece" />
+                                            </h4>
+                                        </div>
+                                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                            <div class="panel-body">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item">Web application archtechture and framework</li>
+                                                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                                                    <li class="list-group-item">Morbi leo risus</li>
+                                                    <li class="list-group-item">Porta ac consectetur ac</li>
+                                                    <li class="list-group-item">Vestibulum at eros</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingTwo">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                    Collapsible Group Item #2
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                            <div class="panel-body">
+                                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven&apos;t heard of them accusamus labore sustainable VHS.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingThree">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                    Collapsible Group Item #3
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                            <div class="panel-body">
+                                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven&apos;t heard of them accusamus labore sustainable VHS.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="modal fade" id="addPreferrence" tabindex="-1" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                <h4 class="modal-title">Modal title</h4>
+                            </div>
+                            <div class="modal-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        Web application archtechture and framework 
+                                        <span class="label label-success">Available</span>
+                                        <input type="button" value="Add" class="btn btn-sm btn-default pull-right" />
+                                    </li>
+                                    <li class="list-group-item">
+                                        Dapibus ac facilisis in
+                                        <span class="label label-danger">Full</span>
+                                    </li>
+                                    <li class="list-group-item">Morbi leo risus</li>
+                                    <li class="list-group-item">Porta ac consectetur ac</li>
+                                    <li class="list-group-item">Vestibulum at eros</li>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

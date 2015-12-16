@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class RegistrationManager {
 
     public RegistrationManager() {
-        database = new Database();
+        database = Database.getInstance();
     }
 
     private final Database database;

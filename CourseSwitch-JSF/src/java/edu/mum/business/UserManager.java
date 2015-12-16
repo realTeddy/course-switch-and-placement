@@ -12,7 +12,7 @@ import edu.mum.model.User;
 public class UserManager {
 
     public UserManager() {
-        database = new Database();
+        database = Database.getInstance();
     }
 
     private final Database database;

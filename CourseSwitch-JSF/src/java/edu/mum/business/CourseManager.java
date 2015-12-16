@@ -17,21 +17,26 @@ import java.util.stream.Stream;
 public class CourseManager {
 
     public CourseManager() {
-        database = new Database();
+        database = Database.getInstance();
     }
 
-    private Database database;
+    private final Database database;
 
     public List<Course> getCourses(User user, int blockId) {
         List<Course> previousCourses = database.getRegistrations().stream()
                 .filter(r -> r.getUser().equals(user) && r.getBlock().getStartDate().compareTo(LocalDate.now()) > 0)
                 .map(r -> r.getCourse()).collect(Collectors.toList());
-
+        
+        List<Course> alreadyPreferenced = database.getRegistrations().stream()
+                .filter(r -> r.getBlock().getId() == blockId && r.getUser().getId().equals(user.getId()))
+                .map(r -> r.getPreferedCourses()).flatMap(Collection::stream).collect(Collectors.toList());
+                
         List<Course> blockCourses = database.getBlocks().stream().filter(b -> b.getId() == blockId)
                 .map(b -> b.getCourses()).flatMap(Collection::stream).collect(Collectors.toList());
 
         return blockCourses.stream().filter(c -> !previousCourses.contains(c) && (c.getPrerequisites().isEmpty()
-                || previousCourses.stream().anyMatch(pc -> c.getPrerequisites().contains(pc))))
+                || previousCourses.stream().anyMatch(pc -> c.getPrerequisites().contains(pc)) &&
+                !alreadyPreferenced.contains(c)))
                 .collect(Collectors.toList());
     }
 

@@ -16,16 +16,25 @@ import edu.mum.modelimpl.CourseImpl;
 import edu.mum.modelimpl.RegistrationImpl;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Database {
 
-    public Database() {
-        users = new ArrayList<>();
-        courses = new ArrayList<>();
-        registrations = new ArrayList<>();
-        blocks = new ArrayList<>();
-        init();
+    private Database() {
+    }
+
+    private static Database instance;
+
+    public static Database getInstance() {
+        if (instance == null) {
+            instance = new Database();
+            instance.users = new ArrayList<>();
+            instance.courses = new ArrayList<>();
+            instance.registrations = new ArrayList<>();
+            instance.blocks = new ArrayList<>();
+            instance.init();
+        }
+
+        return instance;
     }
 
     private List<User> users;
@@ -81,11 +90,14 @@ public class Database {
 
         Course course = new CourseImpl(1, "CS...", "W", "...", null, "Professor ...");
         courses.add(course);
-        courses.add(new CourseImpl(2, "CS545", "Web Application Architecture and Frameworks", "...", Arrays.asList(course), "Professor Levi"));
+        List<Course> newCourses = new ArrayList<>();
+        newCourses.add(course);
+        courses.add(new CourseImpl(2, "CS545", "Web Application Architecture and Frameworks", "...", newCourses, "Professor Levi"));
         courses.add(new CourseImpl(3, "CS..2", "sdfd", "egar", null, ""));
         Block block = new BlockImpl(courses, LocalDate.of(2015, 12, 20), 1);
         blocks.add(block);
-        List<Course> preferedCourses = Arrays.asList(new CourseImpl(4, "CS11", "Sth", "...", null, "Prof..."));
+        List<Course> preferedCourses = new ArrayList<>();
+        preferedCourses.add(new CourseImpl(4, "CS11", "Sth", "...", null, "Prof..."));
 
         registrations.add(new RegistrationImpl(1, user, block, course, preferedCourses));
     }

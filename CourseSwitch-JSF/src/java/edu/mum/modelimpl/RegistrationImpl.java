@@ -35,7 +35,7 @@ public class RegistrationImpl implements Registration {
     
     @Override
     public void addPreferedCourse(Course preferedCourse) {
-        
+        this.preferedCourses.add(preferedCourse);
     }
 
     @Override

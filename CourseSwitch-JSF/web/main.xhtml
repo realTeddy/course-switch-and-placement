@@ -37,27 +37,23 @@ and open the template in the editor.
                                 <div class="row text-center">
                                     <div class="col-md-12">
                                         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                                            <ui:repeat value="#{registrationBean.registrations}" var="registration">
-                                                <div class="panel panel-default">
-                                                    <div class="panel-heading" role="tab" id="headingOne">
-                                                        <h4 class="panel-title">
-                                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                                #{registration.block} - #{registration.course}
-                                                            </a>
-                                                            <input data-block-id="#{registration.block}" ng-click="vm.showNewPreferencesModal()" type="button" class="btn btn-sm btn-success pull-right" value="Add preferece" />
-                                                        </h4>
-                                                    </div>
-                                                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                                        <div class="panel-body">
-                                                            <ul class="list-group">
-                                                                <ui:repeat value="#{registrationBean.getPreferences(registration.block)}" var="preference">
-                                                                    <li class="list-group-item">#{preference}</li>
-                                                                </ui:repeat>
-                                                            </ul>
-                                                        </div>
+                                            <div class="panel panel-default" ng-repeat="registration in registrations">
+                                                <div class="panel-heading" role="tab" id="headingOne">
+                                                    <h4 class="panel-title">
+                                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                            {{registration.block.startDate.month + '/' + registration.block.startDate.day + '/' + registration.block.startDate.year}} - {{registration.course.code}} - {{registration.course.title}}
+                                                        </a>
+                                                        <input ng-click="vm.showNewPreferencesModal(registration)" type="button" class="btn btn-sm btn-success pull-right" value="Add preferece" />
+                                                    </h4>
+                                                </div>
+                                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                                    <div class="panel-body">
+                                                        <ul class="list-group">
+                                                            <li class="list-group-item" ng-repeat="preferedCourse in registration.preferedCourses">{{preferedCourse.title}}</li>
+                                                        </ul>
                                                     </div>
                                                 </div>
-                                            </ui:repeat>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -73,16 +69,15 @@ and open the template in the editor.
                                     </div>
                                     <div class="modal-body">
                                         <ul class="list-group">
-                                            <li class="list-group-item" ng-repeat="course in vm.blockCourses">
+                                            <li class="list-group-item" ng-repeat="course in blockCourses">
                                                 {{course.title + " (" + course.code + ")"}} 
                                                 <span class="label label-success">Available</span>
-                                                <input type="button" value="Add" ng-click="vm.addPreferedCourse(course)" class="btn btn-sm btn-default pull-right" />
+                                                <input type="button" value="Add" ng-click="vm.addPreferedCourse(course.id)" class="btn btn-sm btn-default pull-right" />
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
                                     </div>
                                 </div><!-- /.modal-content -->
                             </div><!-- /.modal-dialog -->

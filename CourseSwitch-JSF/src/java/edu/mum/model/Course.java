@@ -13,6 +13,10 @@ import java.util.List;
  */
 public interface Course {
     
+    public int getId();
+    
+    public void setId(int id);
+    
     public String getInstructor();
 
     public void setInstructor(String instructor);

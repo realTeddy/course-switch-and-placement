@@ -9,13 +9,10 @@ import edu.mum.business.PreferenceManager;
 import edu.mum.business.RegistrationManager;
 import edu.mum.model.Block;
 import edu.mum.model.Course;
-import edu.mum.model.Preference;
 import edu.mum.model.Registration;
 import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -81,12 +78,11 @@ public class RegistrationBean implements Serializable {
         return registrationManager.getRegistrations(userBean.getUser());
     }
 
-    public List<Preference> getPreferences(Block block) {
-        return preferenceManager.getPreferences(userBean.getUser(), block);
-    }
-
+//    public List<Preference> getPreferences(Block block) {
+//        return preferenceManager.getPreferences(userBean.getUser(), block);
+//    }
     public String register() {
-        registrationManager.register(userBean.getUser(), block, course);
+        registrationManager.register(userBean.getUser(), block, course, null);
         return "main";
     }
 }

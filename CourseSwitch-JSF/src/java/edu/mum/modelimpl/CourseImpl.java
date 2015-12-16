@@ -2,17 +2,20 @@ package edu.mum.modelimpl;
 
 import java.util.List;
 import edu.mum.model.Course;
+import java.util.ArrayList;
 
 public class CourseImpl implements Course {
 
-    public CourseImpl(String code, String title, String description, List<Course> prerequisites, String instructor) {
+    public CourseImpl(int id, String code, String title, String description, List<Course> prerequisites, String instructor) {
+        this.id = id;
         this.code = code;
         this.title = title;
         this.description = description;
-        this.prerequisites = prerequisites;
+        this.prerequisites = prerequisites != null ? prerequisites : new ArrayList<>();
         this.instructor = instructor;
     }
 
+    private int id;
     private String code;
     private String title;
     private String description;
@@ -72,5 +75,15 @@ public class CourseImpl implements Course {
     @Override
     public String toString() {
         return title + " (" + code + ")";
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
     }
 }

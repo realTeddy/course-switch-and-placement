@@ -14,9 +14,9 @@ import java.util.List;
  */
 public interface Block {
     
-    int getBlockId();
+    int getId();
     
-    void setBlockId(int blockId);
+    void setId(int id);
 
     List<Course> getCourses();
 

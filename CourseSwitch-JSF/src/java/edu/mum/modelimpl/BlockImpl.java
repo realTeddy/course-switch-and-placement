@@ -12,15 +12,15 @@ import edu.mum.model.Course;
 
 public class BlockImpl implements Block {
 
-    public BlockImpl(List<Course> courses, LocalDate startDate, int blockId) {
+    public BlockImpl(List<Course> courses, LocalDate startDate, int id) {
         this.courses = courses;
         this.startDate = startDate;
-        this.blockId = blockId;
+        this.id = id;
     }
     
     private List<Course> courses;
     private LocalDate startDate;
-    private int blockId;
+    private int id;
 
     @Override
     public List<Course> getCourses() {
@@ -48,12 +48,12 @@ public class BlockImpl implements Block {
     }
 
     @Override
-    public int getBlockId() {
-        return blockId;
+    public int getId() {
+        return id;
     }
 
     @Override
-    public void setBlockId(int blockId) {
-        this.blockId = blockId;
+    public void setId(int id) {
+        this.id = id;
     }
 }

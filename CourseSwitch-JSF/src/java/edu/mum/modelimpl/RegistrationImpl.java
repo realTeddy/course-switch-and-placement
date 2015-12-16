@@ -4,18 +4,49 @@ import edu.mum.model.Block;
 import edu.mum.model.Course;
 import edu.mum.model.Registration;
 import edu.mum.model.User;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RegistrationImpl implements Registration {
 
-    public RegistrationImpl(User user, Block block, Course course) {
+    public RegistrationImpl(int id, User user, Block block, Course course, List<Course> preferedCourses) {
+        this.id = id;
         this.user = user;
         this.course = course;
         this.block = block;
+        this.preferedCourses = preferedCourses != null ? preferedCourses : new ArrayList<>();
     }
 
+    private int id;
     private User user;
     private Course course;
     private Block block;
+    private List<Course> preferedCourses;
+    
+    @Override
+    public List<Course> getPreferedCourses() {
+        return preferedCourses;
+    }
+    
+    @Override
+    public void setPreferedCourses(List<Course> preferedCourses) {
+        this.preferedCourses = preferedCourses;
+    }
+    
+    @Override
+    public void addPreferedCourse(Course preferedCourse) {
+        
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @Override
     public User getUser() {

@@ -5,7 +5,13 @@
  */
 package edu.mum.model;
 
+import java.util.List;
+
 public interface Registration {
+    
+    int getId();
+    
+    void setId(int id);
 
     Block getBlock();
 
@@ -18,5 +24,10 @@ public interface Registration {
     void setCourse(Course course);
 
     void setUser(User user);
+    
+    public List<Course> getPreferedCourses();
+    
+    public void setPreferedCourses(List<Course> preferedCourses);
 
+    public void addPreferedCourse(Course preferedCourse);
 }

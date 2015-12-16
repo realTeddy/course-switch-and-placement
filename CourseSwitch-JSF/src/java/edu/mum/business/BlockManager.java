@@ -15,6 +15,6 @@ public class BlockManager {
     private Database database;
 
     public List<Block> getBlocks(String userId) {
-        return database.getRegistration().stream().filter(r -> r.getUser().getId().equals(userId)).map(r -> r.getBlock()).collect(Collectors.toList());
+        return database.getRegistrations().stream().filter(r -> r.getUser().getId().equals(userId)).map(r -> r.getBlock()).collect(Collectors.toList());
     }
 }

@@ -6,12 +6,10 @@
 package edu.mum.presentation;
 
 import edu.mum.business.PreferenceManager;
-import edu.mum.model.Preference;
+import edu.mum.model.Course;
 import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -20,11 +18,11 @@ import javax.inject.Named;
 public class PreferencesBean implements Serializable {
 
     public UserBean getUser() {
-        return user;
+        return userBean;
     }
 
     public void setUser(UserBean user) {
-        this.user = user;
+        this.userBean = user;
     }
 
     public PreferencesBean() {
@@ -34,9 +32,9 @@ public class PreferencesBean implements Serializable {
     private final PreferenceManager preferenceManager;
 
     @Inject
-    private UserBean user;
+    private UserBean userBean;
     
-    public List<Preference> getPreferences(int blockId) {
-        return preferenceManager.getPreferences(user.getUser(), blockId);
-    }
+//    public List<Course> getPreferences(int blockId) {
+//        return preferenceManager.getPreferences(userBean.getUser(), blockId);
+//    }
 }

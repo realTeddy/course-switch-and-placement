@@ -22,10 +22,16 @@ public class RegistrationManager {
     private final Database database;
 
     public List<Registration> getRegistrations(User user) {
-        return database.getRegistration().stream().filter(b -> b.getUser().equals(user)).collect(Collectors.toList());
+        return database.getRegistrations().stream().filter(b -> b.getUser().equals(user)).collect(Collectors.toList());
     }
 
-    public void register(User user, Block block, Course course) {
-        database.register(user, block, course);
+    public void register(User user, Block block, Course course, List<Course> preferedCourses) {
+        database.register(user, block, course, preferedCourses);
+    }
+
+    public void addPreferedCourse(int registrationId, int courseId) {
+        Registration registration = database.getRegistrations().stream().filter(r -> r.getId() == registrationId).findFirst().get();
+        Course course = database.getCourses().stream().filter(r -> r.getId() == courseId).findFirst().get();
+        registration.addPreferedCourse(course);
     }
 }

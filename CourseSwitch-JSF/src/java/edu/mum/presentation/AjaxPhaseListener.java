@@ -72,7 +72,7 @@ public class AjaxPhaseListener implements PhaseListener {
                     String strCourseId = request.getParameter("courseId");
                     int registrationId = Integer.parseInt(strRregistrationId);
                     int courseId = Integer.parseInt(strCourseId);
-                    registrationManager.addPreferedCourse(registrationId, courseId);
+                    registrationManager.addPreferedCourse(userBean.getUser(), registrationId, courseId);
                     writer.write("");
                 }
             } catch (Exception ex) {

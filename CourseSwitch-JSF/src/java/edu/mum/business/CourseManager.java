@@ -7,6 +7,7 @@ package edu.mum.business;
 
 import edu.mum.dataaccess.Database;
 import edu.mum.model.Course;
+import edu.mum.model.PendingSwitch;
 import edu.mum.model.Registration;
 import edu.mum.model.User;
 import edu.mum.viewmodel.CourseViewModel;
@@ -47,16 +48,18 @@ public class CourseManager {
         List<Registration> registrations = database.getRegistrations().stream()
                 .filter(r -> r.getBlock().getId() == blockId).collect(Collectors.toList());
 
+        List<Course> pendingSwitches = database.getPendingSwitches().stream().filter(p -> p.getUser().equals(user)).map(p -> p.getToCourse()).collect(Collectors.toList());
+
         for (Course course : courses) {
-            boolean isAvailable = false;
+            boolean isAvailable;
             long registeredCount = registrations.stream().filter(r -> r.getCourse().equals(course)).count();
             if (registeredCount < course.getClassCapacity()) {
                 isAvailable = true;
+            } else {
+                isAvailable = registrations.stream().anyMatch(r -> r.getCourse().equals(course) && r.getPreferedCourses().stream().anyMatch(p -> p.getId() == courseId));
             }
-            
-            isAvailable = registrations.stream().anyMatch(r -> r.getCourse().equals(course) && r.getPreferedCourses().stream().anyMatch(p -> p.getId() == courseId));
-            
-            courseViewModels.add(new CourseViewModel(course, isAvailable));
+            boolean isPendingApproval = pendingSwitches.contains(course);
+            courseViewModels.add(new CourseViewModel(course, isAvailable, isPendingApproval));
         }
 
         return courseViewModels;

@@ -13,13 +13,23 @@ import edu.mum.model.Course;
  */
 public class CourseViewModel {
 
-    public CourseViewModel(Course course, boolean isAvailable) {
+    public CourseViewModel(Course course, boolean isAvailable, boolean isPendingApproval) {
         this.course = course;
         this.isAvailable = isAvailable;
+        this.isPendingApproval = isPendingApproval;
     }
     
     private Course course;
     private boolean isAvailable;
+    private boolean isPendingApproval;
+
+    public boolean isIsPendingApproval() {
+        return isPendingApproval;
+    }
+
+    public void setIsPendingApproval(boolean isPendingApproval) {
+        this.isPendingApproval = isPendingApproval;
+    }
 
     public boolean isIsAvailable() {
         return isAvailable;

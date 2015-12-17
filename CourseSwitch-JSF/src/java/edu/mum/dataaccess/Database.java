@@ -9,6 +9,7 @@ import edu.mum.modelimpl.UserImpl;
 import java.util.List;
 import edu.mum.model.Block;
 import edu.mum.model.Course;
+import edu.mum.model.PendingSwitch;
 import edu.mum.model.Registration;
 import edu.mum.model.User;
 import edu.mum.modelimpl.BlockImpl;
@@ -31,6 +32,7 @@ public class Database {
             instance.courses = new ArrayList<>();
             instance.registrations = new ArrayList<>();
             instance.blocks = new ArrayList<>();
+            instance.pendingSwitches = new ArrayList<>();
             instance.init();
         }
 
@@ -41,6 +43,19 @@ public class Database {
     private List<Course> courses;
     private List<Block> blocks;
     private List<Registration> registrations;
+    private List<PendingSwitch> pendingSwitches;
+
+    public List<PendingSwitch> getPendingSwitches() {
+        return pendingSwitches;
+    }
+
+    public void setPendingSwitches(List<PendingSwitch> pendingSwitches) {
+        this.pendingSwitches = pendingSwitches;
+    }
+
+    public void addPendingSwitche(PendingSwitch pendingSwitch) {
+        this.pendingSwitches.add(pendingSwitch);
+    }
 
     public List<User> getUsers() {
         return users;

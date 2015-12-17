@@ -10,6 +10,7 @@ import edu.mum.model.Block;
 import edu.mum.model.Course;
 import edu.mum.model.Registration;
 import edu.mum.model.User;
+import edu.mum.modelimpl.PendingSwitchImpl;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,9 +30,10 @@ public class RegistrationManager {
         database.register(user, block, course, preferedCourses);
     }
 
-    public void addPreferedCourse(int registrationId, int courseId) {
+    public void addPreferedCourse(User user, int registrationId, int courseId) {
         Registration registration = database.getRegistrations().stream().filter(r -> r.getId() == registrationId).findFirst().get();
         Course course = database.getCourses().stream().filter(r -> r.getId() == courseId).findFirst().get();
         registration.addPreferedCourse(course);
+        database.addPendingSwitche(new PendingSwitchImpl(user, registration, course));
     }
 }

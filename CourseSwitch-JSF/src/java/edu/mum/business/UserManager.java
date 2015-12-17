@@ -11,18 +11,12 @@ import edu.mum.model.User;
 
 public class UserManager {
 
-    public UserManager() {
-        database = Database.getInstance();
-    }
-
-    private final Database database;
-
     public User getUser(String email, String password) {
-        Optional<User> user = database.getUsers().stream().filter(s -> s.getEmail().equals(email) && s.getPassword().equals(password)).findAny();
+        Optional<User> user = Database.getUsers().stream().filter(s -> s.getEmail().equals(email) && s.getPassword().equals(password)).findAny();
         return user.isPresent() ? user.get() : null;
     }
 
     public User addUser(String id, String firstName, String lastName, String email, String password) {
-        return database.addUser(id, firstName, lastName, email, password);
+        return Database.addUser(id, firstName, lastName, email, password);
     }
 }

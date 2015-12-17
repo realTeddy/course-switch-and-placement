@@ -12,15 +12,25 @@ import edu.mum.model.User;
 
 public class PendingSwitchImpl implements PendingSwitch {
 
-    public PendingSwitchImpl(User user, Registration fromRegistration, Course toCourse) {
+    public PendingSwitchImpl(User user, Registration fromRegistration, Course toCourse, boolean isSwap) {
         this.user = user;
         this.fromRegistration = fromRegistration;
         this.toCourse = toCourse;
+        this.isSwap = isSwap;
     }
     
     private User user;
     private Registration fromRegistration;
     private Course toCourse;
+    private boolean isSwap;
+
+    public boolean isIsSwap() {
+        return isSwap;
+    }
+
+    public void setIsSwap(boolean isSwap) {
+        this.isSwap = isSwap;
+    }
 
     @Override
     public User getUser() {

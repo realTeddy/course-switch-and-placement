@@ -12,9 +12,7 @@ import java.util.stream.Collectors;
 
 public class BlockManager {
 
-    private Database database;
-
     public List<Block> getBlocks(String userId) {
-        return database.getRegistrations().stream().filter(r -> r.getUser().getId().equals(userId)).map(r -> r.getBlock()).collect(Collectors.toList());
+        return Database.getRegistrations().stream().filter(r -> r.getUser().getId().equals(userId)).map(r -> r.getBlock()).collect(Collectors.toList());
     }
 }

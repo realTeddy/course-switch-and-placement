@@ -5,20 +5,21 @@ import java.util.Objects;
 
 public class UserImpl implements User {
 
-    public UserImpl(String id, String firstName, String lastName, String email, String password) {
+    public UserImpl(String id, String firstName, String lastName, String email, String password, boolean isAdmin) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.isAdmin = isAdmin;
     }
 
     private String id;
     private String firstName;
     private String lastName;
     private String email;
-
     private String password;
+    private boolean isAdmin;
 
     @Override
     public String getId() {
@@ -91,5 +92,15 @@ public class UserImpl implements User {
         int hash = 5;
         hash = 61 * hash + Objects.hashCode(this.id);
         return hash;
+    }
+
+    @Override
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
+    @Override
+    public boolean getIsAdmin() {
+        return isAdmin;
     }
 }

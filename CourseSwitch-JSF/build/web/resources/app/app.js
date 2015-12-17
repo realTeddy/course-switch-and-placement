@@ -29,8 +29,15 @@ app.controller('MainController', function ($scope, $http) {
     };
 
     vm.addPreferedCourse = function addPreferedCourse(course) {
-        $http.get("addPreferedCourse-ajax.faces?courseId=" + course.id + "&registrationId=" + $scope.registration.id)
+        $http.get("addPreferedCourse-ajax.faces?courseId=" + course.course.id + "&registrationId=" + $scope.registration.id)
                 .success(function (data, status, headers, config) {
+                    if (data) {
+                        $scope.information = "The course you are looking for is currently available, you will be registered as soon as the administrator approved your request.";
+                        course.isPendingApproval = true;
+                    } else {
+                        $scope.information = "The course you are looking for is currently not, you will be notified as soon as a student who want to switch with you is found.";
+                    }
+                    $('#alertModal').modal('show');
                     $scope.registration.preferedCourses.push(course);
                     $('#addPreferrenceModal').modal('hide');
                 })

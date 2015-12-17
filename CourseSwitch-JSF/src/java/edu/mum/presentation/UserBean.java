@@ -39,6 +39,15 @@ public class UserBean implements Serializable {
     private String confirmPassword;
     private boolean isLoggedIn;
 
+    public boolean isIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+    private boolean isAdmin;
+
     private User user;
 
     public User getUser() {
@@ -110,11 +119,16 @@ public class UserBean implements Serializable {
             firstName = user.getFirstName();
             lastName = user.getLastName();
             id = user.getId();
+            isAdmin = user.getIsAdmin();
 
             isLoggedIn = true;
-            return "main?faces-redirect=true";
+            if (isAdmin) {
+                return "admin?faces-redirect=true";
+            } else {
+                return "main?faces-redirect=true";
+            }
         }
-        return "index";
+        return "main";
     }
 
     public String logout() {
@@ -131,6 +145,14 @@ public class UserBean implements Serializable {
 
     public void checkLogin(ComponentSystemEvent event) {
         if (!isLoggedIn) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            ConfigurableNavigationHandler handler = (ConfigurableNavigationHandler) context.getApplication().getNavigationHandler();
+            handler.performNavigation("index?faces-redirect=true");
+        }
+    }
+
+    public void checkAdminLogin(ComponentSystemEvent event) {
+        if (!isLoggedIn || !isAdmin) {
             FacesContext context = FacesContext.getCurrentInstance();
             ConfigurableNavigationHandler handler = (ConfigurableNavigationHandler) context.getApplication().getNavigationHandler();
             handler.performNavigation("index?faces-redirect=true");

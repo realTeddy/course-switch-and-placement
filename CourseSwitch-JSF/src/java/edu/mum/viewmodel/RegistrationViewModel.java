@@ -1,4 +1,9 @@
-package edu.mum.modelimpl;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package edu.mum.viewmodel;
 
 import edu.mum.model.Block;
 import edu.mum.model.Course;
@@ -7,9 +12,9 @@ import edu.mum.model.User;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RegistrationImpl implements Registration {
+public class RegistrationViewModel {
 
-    public RegistrationImpl(int id, User user, Block block, Course course, List<Course> preferedCourses) {
+    public RegistrationViewModel(int id, User user, Block block, Course course, List<CourseViewModel> preferedCourses) {
         this.id = id;
         this.user = user;
         this.course = course;
@@ -17,80 +22,64 @@ public class RegistrationImpl implements Registration {
         this.preferedCourses = preferedCourses != null ? preferedCourses : new ArrayList<>();
     }
 
+    public RegistrationViewModel(Registration registration) {
+        this.id = registration.getId();
+        this.user = registration.getUser();
+        this.course = registration.getCourse();
+        this.block = registration.getBlock();
+        this.preferedCourses = new ArrayList<>();
+        for (Course course : registration.getPreferedCourses()) {
+            this.preferedCourses.add(new CourseViewModel(course, false, false));
+        }
+    }
+
     private int id;
     private User user;
     private Course course;
     private Block block;
-    private List<Course> preferedCourses;
-    
-    @Override
-    public List<Course> getPreferedCourses() {
+    private List<CourseViewModel> preferedCourses;
+
+    public List<CourseViewModel> getPreferedCourses() {
         return preferedCourses;
     }
-    
-    @Override
-    public void setPreferedCourses(List<Course> preferedCourses) {
+
+    public void setPreferedCourses(List<CourseViewModel> preferedCourses) {
         this.preferedCourses = preferedCourses;
     }
-    
-    @Override
-    public void addPreferedCourse(Course preferedCourse) {
+
+    public void addPreferedCourse(CourseViewModel preferedCourse) {
         this.preferedCourses.add(preferedCourse);
     }
 
-    @Override
     public int getId() {
         return id;
     }
 
-    @Override
     public void setId(int id) {
         this.id = id;
     }
 
-    @Override
     public User getUser() {
         return user;
     }
 
-    @Override
     public void setUser(User user) {
         this.user = user;
     }
 
-    @Override
     public Course getCourse() {
         return course;
     }
 
-    @Override
     public void setCourse(Course course) {
         this.course = course;
     }
 
-    @Override
     public Block getBlock() {
         return block;
     }
 
-    @Override
     public void setBlock(Block block) {
         this.block = block;
-    }
-    
-    @Override
-    public boolean equals(Object obj) {
-        if (obj != null && obj instanceof RegistrationImpl) {
-            RegistrationImpl registration = (RegistrationImpl) obj;
-            return registration.getId() == id;
-        }
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 11 * hash + this.id;
-        return hash;
     }
 }

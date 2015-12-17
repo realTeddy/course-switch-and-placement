@@ -32,5 +32,9 @@ public interface User {
     void setPassword(String password);
 
     void setUsername(String username);
+
+    void setIsAdmin(boolean isAdmin);
+
+    boolean getIsAdmin();
     
 }

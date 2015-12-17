@@ -7,6 +7,7 @@ import edu.mum.business.RegistrationManager;
 import edu.mum.model.Course;
 import edu.mum.model.Registration;
 import edu.mum.viewmodel.CourseViewModel;
+import edu.mum.viewmodel.RegistrationViewModel;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.faces.context.FacesContext;
@@ -53,7 +54,12 @@ public class AjaxPhaseListener implements PhaseListener {
             try {
                 PrintWriter writer = response.getWriter();
 
-                if (s.contains("blockCourses-ajax.faces")) {
+                if (s.contains("getRegistrations-ajax.faces")) {
+                    List<RegistrationViewModel> registrations = registrationManager.getRegistrations(userBean.getUser());
+                    String json = new Gson().toJson(registrations);
+                    writer.write(json);
+                }
+                else if (s.contains("blockCourses-ajax.faces")) {
                     String strBlockId = request.getParameter("blockId");
                     String strCourseId = request.getParameter("courseId");
                     int blockId = Integer.parseInt(strBlockId);
@@ -62,18 +68,14 @@ public class AjaxPhaseListener implements PhaseListener {
                     String json = new Gson().toJson(preferences);
                     writer.write(json);
                 }
-                if (s.contains("getRegistrations-ajax.faces")) {
-                    List<Registration> registrations = registrationManager.getRegistrations(userBean.getUser());
-                    String json = new Gson().toJson(registrations);
-                    writer.write(json);
-                }
-                if (s.contains("addPreferedCourse-ajax.faces")) {
+                else if (s.contains("addPreferedCourse-ajax.faces")) {
                     String strRregistrationId = request.getParameter("registrationId");
                     String strCourseId = request.getParameter("courseId");
                     int registrationId = Integer.parseInt(strRregistrationId);
                     int courseId = Integer.parseInt(strCourseId);
-                    registrationManager.addPreferedCourse(userBean.getUser(), registrationId, courseId);
-                    writer.write("");
+                    boolean isPendingSwitch = registrationManager.addPreferedCourse(userBean.getUser(), registrationId, courseId);
+                    String json = new Gson().toJson(isPendingSwitch);
+                    writer.write(json);
                 }
             } catch (Exception ex) {
                 System.out.format("%s: %s", ex.getClass().getName(), ex.getMessage());

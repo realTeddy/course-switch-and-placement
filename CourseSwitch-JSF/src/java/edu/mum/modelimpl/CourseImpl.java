@@ -3,6 +3,7 @@ package edu.mum.modelimpl;
 import java.util.List;
 import edu.mum.model.Course;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class CourseImpl implements Course {
 
@@ -21,6 +22,7 @@ public class CourseImpl implements Course {
     private String description;
     private List<Course> prerequisites;
     private String instructor;
+    private int classCapacity;
 
     @Override
     public String getInstructor() {
@@ -85,5 +87,32 @@ public class CourseImpl implements Course {
     @Override
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public int getClassCapacity() {
+        return classCapacity;
+    }
+
+    @Override
+    public void setClassCapacity(int classCapacity) {
+        this.classCapacity = classCapacity;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj != null && obj instanceof CourseImpl) {
+            CourseImpl course = (CourseImpl) obj;
+            return course.getId() == id;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 31 * hash + this.id;
+        hash = 31 * hash + Objects.hashCode(this.prerequisites);
+        return hash;
     }
 }

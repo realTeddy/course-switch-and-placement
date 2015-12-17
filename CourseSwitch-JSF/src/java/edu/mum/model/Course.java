@@ -36,5 +36,9 @@ public interface Course {
     void setPrerequisites(List<Course> prerequisites);
 
     void setTitle(String title);
+
+    public int getClassCapacity();
+
+    public void setClassCapacity(int classCapacity);
     
 }

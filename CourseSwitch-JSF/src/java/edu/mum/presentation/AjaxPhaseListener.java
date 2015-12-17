@@ -6,6 +6,7 @@ import edu.mum.business.PreferenceManager;
 import edu.mum.business.RegistrationManager;
 import edu.mum.model.Course;
 import edu.mum.model.Registration;
+import edu.mum.viewmodel.CourseViewModel;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.faces.context.FacesContext;
@@ -54,8 +55,10 @@ public class AjaxPhaseListener implements PhaseListener {
 
                 if (s.contains("blockCourses-ajax.faces")) {
                     String strBlockId = request.getParameter("blockId");
+                    String strCourseId = request.getParameter("courseId");
                     int blockId = Integer.parseInt(strBlockId);
-                    List<Course> preferences = courseManager.getCourses(userBean.getUser(), blockId);
+                    int courseId = Integer.parseInt(strCourseId);
+                    List<CourseViewModel> preferences = courseManager.getCourses(userBean.getUser(), courseId, blockId);
                     String json = new Gson().toJson(preferences);
                     writer.write(json);
                 }

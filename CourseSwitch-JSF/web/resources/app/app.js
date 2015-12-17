@@ -19,7 +19,7 @@ app.controller('MainController', function ($scope, $http) {
     vm.showNewPreferencesModal = function (registration) {
         $('#addPreferrenceModal').modal('show');
         $scope.registration = registration;
-        $http.get("blockCourses-ajax.faces?blockId=" + registration.block.id)
+        $http.get("blockCourses-ajax.faces?blockId=" + registration.block.id + "&courseId=" + registration.course.id)
                 .success(function (data, status, headers, config) {
                     $scope.blockCourses = data;
                 })

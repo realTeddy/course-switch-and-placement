@@ -17,7 +17,7 @@ and open the template in the editor.
     <h:body>
         <ui:composition>
             <!-- Navigation -->
-            <nav class="navbar navbar-default navbar-fixed-top">
+            <nav class="navbar navbar-default navbar-fixed-top navbar-shrink">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header page-scroll">
@@ -45,7 +45,8 @@ and open the template in the editor.
                         <h:form class="navbar-form navbar-right" role="search" rendered="#{userBean.isLoggedIn}">
                             <h:commandButton class="btn btn-warning" value="Logout" action="#{userBean.logout()}"/>
                         </h:form>
-                        <ul class="nav navbar-nav navbar-right">
+
+                        <ul class="nav navbar-nav navbar-right" style="display:#{userBean.isLoggedIn ? 'none' : 'default'}">
                             <li class="hidden">
                                 <a href="#page-top"></a>
                             </li>
